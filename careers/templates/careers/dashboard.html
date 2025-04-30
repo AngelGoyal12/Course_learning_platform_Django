@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Application Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/careers.css' %}">
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+
+{% block main_block %}
+<section class="dashboard-header">
+    <div class="container">
+        <h1>My Application Dashboard</h1>
+        <p>Track your job applications with TechTrek</p>
+    </div>
+</section>
+
+<section class="dashboard-content">
+    <div class="container">
+        <div class="row">
+            <!-- Status Summary Cards -->
+            <div class="col-md-12">
+                <div class="status-summary">
+                    <div class="status-card">
+                        <h3>{{ submitted_count }}</h3>
+                        <p>Submitted</p>
+                    </div>
+                    <div class="status-card">
+                        <h3>{{ under_review_count }}</h3>
+                        <p>Under Review</p>
+                    </div>
+                    <div class="status-card">
+                        <h3>{{ interview_count }}</h3>
+                        <p>Interview</p>
+                    </div>
+                    <div class="status-card accepted">
+                        <h3>{{ accepted_count }}</h3>
+                        <p>Accepted</p>
+                    </div>
+                    <div class="status-card rejected">
+                        <h3>{{ rejected_count }}</h3>
+                        <p>Rejected</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Applications List -->
+            <div class="col-md-12">
+                <div class="applications-list">
+                    <h2>My Applications</h2>
+                    
+                    {% if applications %}
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Position</th>
+                                        <th>Applied On</th>
+                                        <th>Status</th>
+                                        <th>Last Updated</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for app in applications %}
+                                    <tr class="status-{{ app.status }}">
+                                        <td>{{ app.position }}</td>
+                                        <td>{{ app.applied_on|date:"M d, Y" }}</td>
+                                        <td>
+                                            <span class="status-badge {{ app.status }}">
+                                                {% if app.status == 'submitted' %}
+                                                    Submitted
+                                                {% elif app.status == 'under_review' %}
+                                                    Under Review
+                                                {% elif app.status == 'interview' %}
+                                                    Interview Stage
+                                                {% elif app.status == 'accepted' %}
+                                                    Accepted
+                                                {% elif app.status == 'rejected' %}
+                                                    Rejected
+                                                {% endif %}
+                                            </span>
+                                        </td>
+                                        <td>{{ app.last_updated|date:"M d, Y" }}</td>
+                                        <td>
+                                            <a href="{% url 'careers:application_detail' app.id %}" class="view-btn">View Details</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="no-applications">
+                            <p>You don't have any job applications yet.</p>
+                            <a href="{% url 'careers:careers' %}#open-positions" class="btn-primary">Browse Open Positions</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

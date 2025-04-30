@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title_block %}Shopping Cart{% endblock %}
+{% block extra_css %}
+<style>
+    .cart{
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #2a5298;
+        text-align: center;
+        margin-top: 50rem;
+    }
+    .container{
+        overflow: scroll;
+        margin-top: 150px;
+    }
+</style>
+{% endblock %}
+{% block main_block %}
+<div class="container my-5 mt-5" >
+    
+    <h1 class="mt-5 cart">Your Shopping Cart</h1>
+    {% if cart_items %}
+        <table class="table mt-5">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if is_authenticated %}
+                    {% for item in cart_items %}
+                        <tr>
+                            <td>{{ item.item_name }}</td>
+                            <td>₹{{ item.price }}</td>
+                            <td>
+                                <form action="{% url 'remove_from_cart' %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="item_id" value="{{ item.id }}">
+                                    <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    {% for item in cart_items %}
+                        <tr>
+                            <td>{{ item.item_name }}</td>
+                            <td>₹{{ item.price }}</td>
+                            <td>
+                                <form action="{% url 'remove_from_cart' %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="item_index" value="{{ forloop.counter0 }}">
+                                    <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Total</th>
+                    <td colspan="2">₹{{ total }}</td>
+                </tr>
+            </tfoot>
+        </table>
+        
+        <div class="d-flex justify-content-between">
+            <a href="{% url 'index' %}" class="btn btn-secondary">Continue Shopping</a>
+            <a href="{% url 'checkout' %}" class="btn btn-primary">Proceed to Checkout</a>
+        </div>
+    {% else %}
+        <p>Your cart is empty.</p>
+        <a href="{% url 'index' %}" class="btn btn-primary">Continue Shopping</a>
+    {% endif %}
+</div>
+{% endblock %}

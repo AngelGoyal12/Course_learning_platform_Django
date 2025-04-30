@@ -1,0 +1,357 @@
+/* Dashboard Styles */
+
+/* Dashboard Header */
+.dashboard-header {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+        url('/static/images/photo.avif') center/cover;
+    color: var(--white);
+    padding: 5rem 0;
+    text-align: center;
+    margin-top: 70px;
+}
+
+.dashboard-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Dashboard Content */
+.dashboard-content {
+    padding: 3rem 0;
+    background-color: #f9f9f9;
+}
+
+/* Status Summary Cards */
+.status-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.status-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 1.5rem;
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-top: 4px solid var(--primary-color);
+}
+
+.status-card h3 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.status-card.accepted {
+    border-top-color: #4CAF50;
+}
+
+.status-card.accepted h3 {
+    color: #4CAF50;
+}
+
+.status-card.rejected {
+    border-top-color: #F44336;
+}
+
+.status-card.rejected h3 {
+    color: #F44336;
+}
+
+/* Applications List */
+.applications-list {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.applications-list h2 {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th {
+    text-align: left;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    font-weight: 600;
+}
+
+.table td {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+/* Status Badges */
+.status-badge {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.status-badge.submitted {
+    background-color: #E0E0E0;
+    color: #616161;
+}
+
+.status-badge.under_review {
+    background-color: #FFF8E1;
+    color: #FFA000;
+}
+
+.status-badge.interview {
+    background-color: #E3F2FD;
+    color: #1976D2;
+}
+
+.status-badge.accepted {
+    background-color: #E8F5E9;
+    color: #388E3C;
+}
+
+.status-badge.rejected {
+    background-color: #FFEBEE;
+    color: #D32F2F;
+}
+
+.status-badge.large {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+/* Action Buttons */
+.view-btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.view-btn:hover {
+    background-color: #1e4080;
+    color: var(--white);
+    text-decoration: none;
+}
+
+/* No Applications Message */
+.no-applications {
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.no-applications p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #1e4080;
+    color: var(--white);
+    text-decoration: none;
+}
+
+/* Application Detail Page */
+.application-header {
+    background: var(--primary-color);
+    color: var(--white);
+    padding: 3rem 0;
+    margin-top: 70px;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    text-decoration: none;
+}
+
+.back-btn i {
+    margin-right: 0.5rem;
+}
+
+.application-detail {
+    padding: 3rem 0;
+    background-color: #f9f9f9;
+}
+
+.application-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.info-table {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.info-table th, .info-table td {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.info-table th {
+    width: 35%;
+    font-weight: 600;
+    color: #555;
+}
+
+.materials-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.material-item {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 1.5rem;
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+}
+
+.material-item i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.download-btn, .view-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.download-btn {
+    background-color: #4CAF50;
+    color: var(--white);
+}
+
+.download-btn:hover {
+    background-color: #388E3C;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.download-btn i, .view-btn i {
+    margin-right: 0.5rem;
+}
+
+.cover-letter {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    white-space: pre-line;
+}
+
+.interview-notice, .acceptance-notice {
+    background-color: #E3F2FD;
+    border-left: 4px solid #1976D2;
+    padding: 1.5rem;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.acceptance-notice {
+    background-color: #E8F5E9;
+    border-left-color: #388E3C;
+}
+
+.interview-notice i, .acceptance-notice i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #1976D2;
+}
+
+.acceptance-notice i {
+    color: #388E3C;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .status-summary {
+        flex-direction: column;
+    }
+    
+    .status-card {
+        width: 100%;
+    }
+    
+    .table thead {
+        display: none;
+    }
+    
+    .table, .table tbody, .table tr, .table td {
+        display: block;
+        width: 100%;
+    }
+    
+    .table tr {
+        margin-bottom: 1rem;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        padding: 1rem;
+    }
+    
+    .table td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 45%;
+        padding-left: 1rem;
+        font-weight: 600;
+        text-align: left;
+    }
+    
+    .materials-box {
+        flex-direction: column;
+    }
+}

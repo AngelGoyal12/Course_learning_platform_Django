@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Application Details{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/careers.css' %}">
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+
+{% block main_block %}
+<section class="application-header">
+    <div class="container">
+        <a href="{% url 'careers:dashboard' %}" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+        <h1>{{ application.position }} Application</h1>
+        <div class="status-badge {{ application.status }} large">
+            {% if application.status == 'submitted' %}
+                Submitted
+            {% elif application.status == 'under_review' %}
+                Under Review
+            {% elif application.status == 'interview' %}
+                Interview Stage
+            {% elif application.status == 'accepted' %}
+                Accepted
+            {% elif application.status == 'rejected' %}
+                Rejected
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<section class="application-detail">
+    <div class="container">
+        <div class="application-card">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Application Information</h3>
+                    <table class="info-table">
+                        <tr>
+                            <th>Position:</th>
+                            <td>{{ application.position }}</td>
+                        </tr>
+                        <tr>
+                            <th>Applied On:</th>
+                            <td>{{ application.applied_on|date:"F d, Y" }}</td>
+                        </tr>
+                        <tr>
+                            <th>Last Updated:</th>
+                            <td>{{ application.last_updated|date:"F d, Y" }}</td>
+                        </tr>
+                        <tr>
+                            <th>Status:</th>
+                            <td>
+                                {% if application.status == 'submitted' %}
+                                    Submitted
+                                {% elif application.status == 'under_review' %}
+                                    Under Review
+                                {% elif application.status == 'interview' %}
+                                    Interview Stage
+                                {% elif application.status == 'accepted' %}
+                                    Accepted
+                                {% elif application.status == 'rejected' %}
+                                    Rejected
+                                {% endif %}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="col-md-6">
+                    <h3>Personal Information</h3>
+                    <table class="info-table">
+                        <tr>
+                            <th>Name:</th>
+                            <td>{{ application.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Email:</th>
+                            <td>{{ application.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Phone:</th>
+                            <td>{{ application.phone|default:"Not provided" }}</td>
+                        </tr>
+                        <tr>
+                            <th>Experience:</th>
+                            <td>{{ application.get_experience_display }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <h3>Application Materials</h3>
+                    
+                    <div class="materials-box">
+                        <div class="material-item">
+                            <i class="fas fa-file-pdf"></i>
+                            <h4>Resume</h4>
+                            <a href="{{ application.resume.url }}" target="_blank" class="download-btn">
+                                <i class="fas fa-download"></i> Download Resume
+                            </a>
+                        </div>
+                        
+                        {% if application.portfolio %}
+                        <div class="material-item">
+                            <i class="fas fa-globe"></i>
+                            <h4>Portfolio</h4>
+                            <a href="{{ application.portfolio }}" target="_blank" class="view-btn">
+                                <i class="fas fa-external-link-alt"></i> View Portfolio
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    {% if application.cover_letter %}
+                    <h3 class="mt-4">Cover Letter</h3>
+                    <div class="cover-letter">
+                        {{ application.cover_letter|linebreaks }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            {% if application.status == 'interview' %}
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="interview-notice">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>Interview Stage</h3>
+                        <p>Your application has been selected for an interview! Our HR team will contact you shortly with the details.</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            
+            {% if application.status == 'accepted' %}
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="acceptance-notice">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Congratulations!</h3>
+                        <p>Your application has been accepted! The HR team will reach out to you soon with more information about the next steps.</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
